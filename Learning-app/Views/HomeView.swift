@@ -19,21 +19,29 @@ struct HomeView: View {
                     .padding(.leading, 20)
                 ScrollView{
                     LazyVStack{
-                        
-                        VStack(spacing: 20){
-                            
-                            ForEach(model.modules){ module in
-                                HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessions", time: module.content.time)
+
+                        ForEach(model.modules){ module in
+                            VStack(spacing: 20){
+                                NavigationLink(
+                                    destination: ContentView().onAppear{
+                                        model.beginModule(module.id)
+                                    },
+                                    label: {
+                                        HomeViewRow(image: module.content.image, title: "Learn \(module.category)", description: module.content.description, count: "\(module.content.lessons.count) Lessions", time: module.content.time)
+                                    })
+                                
+                                //Test Card
                                 HomeViewRow(image: module.test.image, title: "\(module.category) Test", description: module.test.description, count: "\(module.test.questions.count) Test", time: module.test.time)
-                            }
                         }
                     }
-                    .padding()
                 }
+                .accentColor(.black)
+                .padding()
             }
-            .navigationTitle("Get Started")
         }
+        .navigationTitle("Get Started")
     }
+}
 }
 
 struct HomeView_Previews: PreviewProvider {
