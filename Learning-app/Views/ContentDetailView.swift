@@ -28,13 +28,28 @@ struct ContentDetailView: View {
                     model.nextLession()
                 }, label: {
                     ZStack{
+                        RectangleCard()
+                            .frame(height: 48)
+                        Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessionIndex + 1].title)")
+                            .bold()
+                            .foregroundColor(.white)
+                        
+                    }
+                })
+            }
+            else{
+                Button(action: {
+                    //Take the user back to the homeView
+                    model.currentContentSelected = nil
+                }, label: {
+                    ZStack{
                         Rectangle()
                             .foregroundColor(Color.green)
                             .cornerRadius(10)
                             .shadow(radius: 5)
                             .frame(height: 48)
                         
-                        Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessionIndex + 1].title)")
+                        Text("Complete")
                             .bold()
                             .foregroundColor(.white)
                         
