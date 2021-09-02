@@ -23,6 +23,7 @@
 		FFB99A4326B72C8E0048659C /* AVKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FFB99A4226B72C8E0048659C /* AVKit.framework */; };
 		FFB99A4526B72DC90048659C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB99A4426B72DC90048659C /* Constants.swift */; };
 		FFB99A6426B81F7A0048659C /* CodeTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFB99A6326B81F7A0048659C /* CodeTextView.swift */; };
+		FFBDD8C426E07B1400DC655E /* TestView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFBDD8C326E07B1400DC655E /* TestView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -44,6 +45,7 @@
 		FFB99A4226B72C8E0048659C /* AVKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVKit.framework; path = System/Library/Frameworks/AVKit.framework; sourceTree = SDKROOT; };
 		FFB99A4426B72DC90048659C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		FFB99A6326B81F7A0048659C /* CodeTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodeTextView.swift; sourceTree = "<group>"; };
+		FFBDD8C326E07B1400DC655E /* TestView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 				FFB99A3F26B72AAF0048659C /* ContentDetailView.swift */,
 				FFB99A6326B81F7A0048659C /* CodeTextView.swift */,
 				FF4AB06226D306CB00746961 /* RectangleCard.swift */,
+				FFBDD8C326E07B1400DC655E /* TestView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -225,6 +228,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				FFBDD8C426E07B1400DC655E /* TestView.swift in Sources */,
 				FF86FDD826A2981700B695F3 /* HomeView.swift in Sources */,
 				FF2F492926AD96D300DDF24D /* HomeViewRow.swift in Sources */,
 				FFB99A3C26B6D7970048659C /* ContentView.swift in Sources */,

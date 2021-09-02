@@ -15,14 +15,19 @@ class ContentModel: ObservableObject {
     //Current lesson
     @Published var currentLession: Lesson?
     var currentLessionIndex = 0
+    //Current question
+    @Published var currentQuestion: Question?
+    var currentQuestionIndex = 0
+    
     
     //Current lesson explanation
-    @Published var lessonDescription = NSAttributedString()
+    @Published var codeText = NSAttributedString()
     
     var styleData: Data?
     
     //Current selected content and test
     @Published var currentContentSelected: Int?
+    @Published var currentTestSelected: Int?
     
     init(){
         getLocalData()
@@ -80,11 +85,24 @@ class ContentModel: ObservableObject {
         }
         
         currentLession = currentModule!.content.lessons[currentLessionIndex]
-        lessonDescription = addStyling(currentLession!.explanation)
+        codeText = addStyling(currentLession!.explanation)
     }
     
     func hasNextLesson() -> Bool {
         return currentLessionIndex + 1 < currentModule!.content.lessons.count
+    }
+    
+    func beginTest(_ moduledId: Int){
+        //Set the current module
+        beginModule(moduledId)
+        //Set the current question
+        currentQuestionIndex = 0
+        
+        //If there question set the question to the first one
+        if currentModule?.test.questions.count ?? 0 > 0 {
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(currentQuestion!.content)
+        }
     }
     
     func nextLession() {
@@ -95,12 +113,12 @@ class ContentModel: ObservableObject {
         if currentLessionIndex < currentModule!.content.lessons.count {
             //Set the current lesson property
             currentLession = currentModule!.content.lessons[currentLessionIndex]
-            lessonDescription = addStyling(currentLession!.explanation)
+            codeText = addStyling(currentLession!.explanation)
         }else{
             //Reset the lesson state
             currentLessionIndex = 0
             currentLession =  nil
-            lessonDescription = NSAttributedString()
+            codeText = NSAttributedString()
         }
        
     }
