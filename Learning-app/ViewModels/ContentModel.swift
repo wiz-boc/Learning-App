@@ -105,6 +105,21 @@ class ContentModel: ObservableObject {
         }
     }
     
+    func nextQuestion() {
+        //Advance next question
+        currentQuestionIndex += 1
+        
+        if currentQuestionIndex < currentModule!.test.questions.count {
+            currentQuestion = currentModule!.test.questions[currentQuestionIndex]
+            codeText = addStyling(currentQuestion!.content)
+        }else{
+            currentLessionIndex = 0
+            currentQuestion = nil
+        }
+        
+    }
+    
+    
     func nextLession() {
         //Adance the lesson index
         currentLessionIndex += 1
