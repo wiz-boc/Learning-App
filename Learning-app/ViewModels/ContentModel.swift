@@ -113,7 +113,7 @@ class ContentModel: ObservableObject {
             currentQuestion = currentModule!.test.questions[currentQuestionIndex]
             codeText = addStyling(currentQuestion!.content)
         }else{
-            currentLessionIndex = 0
+            currentQuestionIndex = 0
             currentQuestion = nil
         }
         
