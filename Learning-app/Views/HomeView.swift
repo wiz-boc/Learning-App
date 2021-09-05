@@ -50,6 +50,7 @@ struct HomeView: View {
                                     })
                                 
                         }
+                            .padding(.bottom, 10)
                     }
                 }
                 .accentColor(.black)
@@ -57,6 +58,16 @@ struct HomeView: View {
             }
         }
         .navigationTitle("Get Started")
+            .onChange(of: model.currentContentSelected, perform: { changeValue in
+                if changeValue == nil {
+                    model.currentModule = nil
+                }
+            })
+            .onChange(of: model.currentTestSelected, perform: { changeValue in
+                if changeValue == nil {
+                    model.currentModule = nil
+                }
+            })
     }
 }
 }

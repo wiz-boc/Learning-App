@@ -28,7 +28,7 @@ struct ContentDetailView: View {
                     model.nextLession()
                 }, label: {
                     ZStack{
-                        RectangleCard()
+                        RectangleCard(color: .green)
                             .frame(height: 48)
                         Text("Next Lesson: \(model.currentModule!.content.lessons[model.currentLessionIndex + 1].title)")
                             .bold()

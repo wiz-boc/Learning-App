@@ -30,7 +30,10 @@ class ContentModel: ObservableObject {
     @Published var currentTestSelected: Int?
     
     init(){
+        //Parse local included json data
         getLocalData()
+        //Down remote json file and parse data
+        getRemoteData()
     }
     
     //MARK:- Data methods
@@ -59,6 +62,41 @@ class ContentModel: ObservableObject {
         }
     }
     
+    func getRemoteData(){
+        let urlString = "https://wiz-boc.github.io/learningapp-data/data2.json"
+        let url = URL(string: urlString)
+        guard url != nil else { return }
+        
+        let request = URLRequest(url: url!)
+        let session = URLSession.shared
+        let dataTask = session.dataTask(with: request) { data, response, error in
+            //Check if there's an error
+            guard error == nil else {
+                //There was an error
+                return
+            }
+            guard data != nil else {
+                //There was an error
+                return
+            }
+            do{
+                let decoder = JSONDecoder()
+                let modules = try decoder.decode([Module].self, from: data!)
+                
+                DispatchQueue.main.async {
+                    self.modules += modules
+                }
+                
+            }catch{
+                print(error)
+            }
+            
+        }
+        dataTask.resume()
+        
+        
+    }
+    
     //MARK: - Module navigation methods
     
     func beginModule(_ moduleid: Int){
@@ -83,12 +121,15 @@ class ContentModel: ObservableObject {
         }else{
             currentLessionIndex = 0
         }
-        
-        currentLession = currentModule!.content.lessons[currentLessionIndex]
-        codeText = addStyling(currentLession!.explanation)
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            self.currentLession = self.currentModule!.content.lessons[self.currentLessionIndex]
+            self.codeText = self.addStyling(self.currentLession!.explanation)
+        }
     }
     
     func hasNextLesson() -> Bool {
+        guard currentModule != nil else { return false }
         return currentLessionIndex + 1 < currentModule!.content.lessons.count
     }
     
