@@ -31,7 +31,7 @@ struct ContentView: View {
             .padding()
             .navigationBarTitle("Learn \(model.currentModule?.category ?? "")")
             
-        }
+        }.navigationViewStyle(StackNavigationViewStyle())
     }
 }
 
